@@ -39,6 +39,8 @@ sed -i_orig -e 's/security_layer=negotiate/security_layer=rdp/g' /etc/xrdp/xrdp.
 sed -i_orig -e 's/crypt_level=high/crypt_level=none/g' /etc/xrdp/xrdp.ini
 # Disable bitmap compression since its local its much faster
 sed -i_orig -e 's/bitmap_compression=true/bitmap_compression=false/g' /etc/xrdp/xrdp.ini
+# Disable TCP keepalive for XRDP to reduce session dropouts while changing networks
+sed -i_orig -e 's/tcp_keepalive=true/tcp_keepalive=false/g' /etc/xrdp/xrdp.ini
 
 # Add script to setup the Ubuntu session properly
 if [ ! -e /etc/xrdp/startubuntu.sh ]; then
@@ -86,6 +88,10 @@ ResultAny=yes
 ResultInactive=yes
 ResultActive=yes
 EOF
+
+# Configure required PAM additional modules for XRDP
+echo "\nsession required pam_env.so readenv=1 envfile=/etc/environment"
+echo "session required pam_env.so readenv=1 envfile=/etc/default/locale"
 
 # Start up XRDP service again
 systemctl daemon-reload
