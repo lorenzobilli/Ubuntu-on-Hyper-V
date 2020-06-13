@@ -21,8 +21,8 @@ if [ -f /var/run/reboot-required ]; then
 fi
 
 # Install additional kernel components
-apt install -y linux-tools
-apt install -y linux-cloud-tools
+apt install -y linux-tools-generic-hwe-20.04
+apt install -y linux-cloud-tools-generic-hwe-20.04
 
 # Install XRDP
 apt install -y xrdp
