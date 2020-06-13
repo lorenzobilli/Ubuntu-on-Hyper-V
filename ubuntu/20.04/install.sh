@@ -90,14 +90,14 @@ ResultActive=yes
 EOF
 
 # Configure required PAM additional modules for XRDP
-echo "\nsession required pam_env.so readenv=1 envfile=/etc/environment"
-echo "session required pam_env.so readenv=1 envfile=/etc/default/locale"
+echo "\nsession required pam_env.so readenv=1 envfile=/etc/environment" >> /etc/pam.d/xrdp-sesman
+echo "session required pam_env.so readenv=1 envfile=/etc/default/locale" >> /etc/pam.d/xrdp-sesman
 
 # Start up XRDP service again
 systemctl daemon-reload
 systemctl start xrdp
 
 echo "Install is complete."
-echo "Shutdown your machine, then from an elevated PowerShell session type:\n"
+echo "Shutdown your machine, then from an elevated PowerShell session type:"
 echo "Set-VM -VMName <your_VM_name> -EnhancedSessionTransportType HvSocket"
-echo "\nAnd boot your machine back to begin using Enhanced Session."
+echo "And boot your machine back to begin using Enhanced Session."
