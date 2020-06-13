@@ -90,7 +90,8 @@ ResultActive=yes
 EOF
 
 # Configure required PAM additional modules for XRDP
-echo "\nsession required pam_env.so readenv=1 envfile=/etc/environment" >> /etc/pam.d/xrdp-sesman
+echo "" >> /etc/pam.d/xrdp-sesman
+echo "session required pam_env.so readenv=1 envfile=/etc/environment" >> /etc/pam.d/xrdp-sesman
 echo "session required pam_env.so readenv=1 envfile=/etc/default/locale" >> /etc/pam.d/xrdp-sesman
 
 # Start up XRDP service again
